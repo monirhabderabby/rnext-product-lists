@@ -1,14 +1,21 @@
 // Packages
-import React from "react";
+import React, { useContext } from "react";
 
 // Local imports
-import { useGetAllProducts } from "../../hooks/useGetAllProducts"; // Custom hook to fetch all products
-import ProductCard from "../common/cards/product-card"; // Component to display individual product details
+import { SearchTermContext, SelectedSortingContext } from "../../context";
+import { useGetAllProducts } from "../../hooks/useGetAllProducts";
+import { searchProducts, sortingProducts } from "../../lib/products";
+import ProductCard from "../common/cards/product-card";
 import ProductCardSkeleton from "../common/cards/product-card-skeleton"; // Skeleton component for loading state
 
 const ProductsContainer = () => {
   // Destructure loading, products data, and error state from custom hook
-  const { loading, data: products, error } = useGetAllProducts();
+  let { loading, data: products, error } = useGetAllProducts();
+  const { searchTerm } = useContext(SearchTermContext);
+  const [selectedSorting] = useContext(SelectedSortingContext);
+
+  products = searchProducts(products, searchTerm);
+  products = sortingProducts(products, selectedSorting);
 
   let content;
 

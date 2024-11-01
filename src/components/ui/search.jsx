@@ -1,7 +1,15 @@
-import React from "react";
+// Packages
+import React, { useContext, useState } from "react";
+
+// Local imports
+import { SearchTermContext } from "../../context";
 import { icons } from "./icon";
 
 const Search = () => {
+  // Destructuring searchTerm and handleSearch from context
+  const { searchTerm, handleSearch } = useContext(SearchTermContext);
+  const [value, setValue] = useState(searchTerm);
+
   return (
     <div className="flex flex-1 items-center px-3.5 py-2 text-gray-400 group hover:ring-1 hover:ring-gray-300 focus-within:!ring-2 ring-inset focus-within:!ring-teal-500 rounded-md">
       {icons.search}
@@ -14,8 +22,12 @@ const Search = () => {
         type="text"
         aria-expanded="false"
         aria-autocomplete="list"
-        value=""
-        // style="caret-color: rgb(107, 114, 128)"
+        value={value}
+        onChange={(e) => {
+          handleSearch(e.target.value);
+          setValue(e.target.value);
+        }}
+        style={{ caretColor: "rgb(107, 114, 128)" }}
       />
     </div>
   );
