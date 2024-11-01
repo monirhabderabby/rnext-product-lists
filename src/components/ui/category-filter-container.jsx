@@ -27,7 +27,10 @@ const CategoryFilterContainer = () => {
     content = <div className="px-4 py-2 text-red-500">{error}</div>;
   } else if (categories) {
     content = categories.map((category) => (
-      <label className="inline-flex w-full cursor-pointer hover:bg-gray-50 items-center px-4 py-2 text-sm text-gray-700">
+      <label
+        key={category}
+        className="inline-flex w-full cursor-pointer hover:bg-gray-50 items-center px-4 py-2 text-sm text-gray-700"
+      >
         <input
           type="checkbox"
           className="form-checkbox h-4 w-4"

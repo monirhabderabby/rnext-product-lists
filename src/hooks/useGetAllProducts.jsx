@@ -1,11 +1,14 @@
 import { useContext, useEffect, useState } from "react";
-import { SelectedCategoryContext } from "../context";
+import { SelectedCategoryContext, SelectedSortingContext } from "../context";
 
 export const useGetAllProducts = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
+
+  // context
   const [selectedCategory] = useContext(SelectedCategoryContext);
+  const [selectedSorting] = useContext(SelectedSortingContext);
 
   let fetchUrl;
 
