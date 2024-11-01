@@ -36,7 +36,7 @@ const SortingContainer = () => {
         role="menu"
         aria-orientation="vertical"
         aria-labelledby="menu-button"
-        tabindex="-1"
+        tabIndex="-1"
       >
         {open && (
           <div className="py-1" role="none">
@@ -48,7 +48,7 @@ const SortingContainer = () => {
                   active === label && "bg-gray-50"
                 }`}
                 role="menuitem"
-                tabindex="-1"
+                tabIndex="-1"
                 onclick="toggleDropdown()"
                 id="menu-item-0"
               >

@@ -31,7 +31,7 @@ export const icons = {
   ),
   search: (
     <svg
-      class="mr-2 h-5 w-5 stroke-slate-400"
+      className="mr-2 h-5 w-5 stroke-slate-400"
       fill="none"
       viewBox="0 0 24 24"
       stroke-width="2"
@@ -50,7 +50,7 @@ export const icons = {
       viewBox="0 0 24 24"
       stroke-width="1.5"
       stroke="currentColor"
-      class="mr-2.5 h-5 w-5 flex-none stroke-slate-400"
+      className="mr-2.5 h-5 w-5 flex-none stroke-slate-400"
     >
       <path
         stroke-linecap="round"
