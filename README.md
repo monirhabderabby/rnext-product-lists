@@ -29,6 +29,7 @@ Check out the live version of the project: [https://rnext-product-lists.vercel.a
 Here is a mind map that visualizes the components and structure of the Product List application:
 
 ![Mindmap](https://utfs.io/f/0CpqaBXnsrLBv7VV7f1a2ov5UbE176ywQdHhIsSrzKC9tRlJ)
+![Mindmap](https://utfs.io/f/0CpqaBXnsrLBdCsrkdV4csEOkCTaeSXbQ0VoJu4W2g18nFtB)
 
 ## Installation & Setup
 
