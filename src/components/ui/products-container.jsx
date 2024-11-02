@@ -1,5 +1,5 @@
 // Packages
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 
 // Local imports
 import { SearchTermContext, SelectedSortingContext } from "../../context";
@@ -14,14 +14,23 @@ const ProductsContainer = () => {
   const { searchTerm } = useContext(SearchTermContext);
   const [selectedSorting] = useContext(SelectedSortingContext);
 
-  products = searchProducts(products, searchTerm);
-  products = sortingProducts(products, selectedSorting);
+  // Memoize the filtered and sorted products to avoid recalculating on every render.
+  const filteredAndSortedProducts = useMemo(() => {
+    let result = products || [];
+    result = searchProducts(result, searchTerm);
+    return sortingProducts(result, selectedSorting);
+  }, [products, searchTerm, selectedSorting]);
+
+  const skeletonArray = useMemo(
+    () => Array.from({ length: 6 }, (_, i) => i + 1),
+    []
+  );
 
   let content;
 
   // Render loading skeletons if data is still being fetched
   if (loading) {
-    content = [1, 2, 3, 4, 5, 6].map((n) => <ProductCardSkeleton key={n} />);
+    content = skeletonArray.map((n) => <ProductCardSkeleton key={n} />);
   }
   // Display error message if fetching data failed
   else if (error) {
@@ -32,7 +41,7 @@ const ProductsContainer = () => {
     );
   }
   // Display message if product list is empty
-  else if (products?.length === 0) {
+  else if (filteredAndSortedProducts?.length === 0) {
     content = (
       <div className="col-span-1 sm:col-span-2 lg:col-span-4 h-[200px] flex justify-center items-center text-gray-500">
         Product List is Empty!
@@ -40,8 +49,10 @@ const ProductsContainer = () => {
     );
   }
   // Map through and display each product when data is available
-  else if (products?.length > 0) {
-    content = products.map((p) => <ProductCard key={p.id} product={p} />);
+  else if (filteredAndSortedProducts?.length > 0) {
+    content = filteredAndSortedProducts.map((p) => (
+      <ProductCard key={p.id} product={p} />
+    ));
   }
 
   return (

@@ -1,10 +1,14 @@
+// Packages
 import React from "react";
+
+// Local imports
 import Cart from "./cart";
 import CategoryFilterContaier from "./category-filter-container";
 import Search from "./search";
 import SortingContainer from "./sorting-container";
 
 const NewArrivalFilterContainer = () => {
+  console.log("Render @@NewArrivalFilterContainer");
   return (
     <div className="mt-10">
       <div className="flex justify-between relative mx-auto max-w-7xl px-4 sm:static sm:px-6 lg:px-8">

@@ -7,6 +7,7 @@ import { icons } from "./icon";
 
 const Cart = () => {
   const { cartItems } = useContext(CartContext);
+
   return (
     <div className="flow-root">
       <a href="#" className="group -m-2 flex items-center p-2">
